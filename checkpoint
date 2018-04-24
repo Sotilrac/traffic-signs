@@ -1,2 +1,2 @@
-model_checkpoint_path: "letraffic"
-all_model_checkpoint_paths: "letraffic"
+model_checkpoint_path: "letraffic_float"
+all_model_checkpoint_paths: "letraffic_float"
