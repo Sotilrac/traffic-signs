@@ -6,11 +6,11 @@ By Carlos Asmat
 
 [image1]: ./img/output_16_1.png "Raw Data"
 [image2]: ./img/output_26_0.png "Validation Accuracy by Epoch"
-[image3]: ./img/output_31_3.png "Google Streetview Test Data Preprocessed"
+[image3]: ./img/output_31_3.png "Google Street-view Test Data Preprocessed"
 [image4]: ./img/output_9_0.png "Classes Histogram"
 [image5]: ./img/output_16_2.png "Preprocessed Data"
-[image6]: ./img/output_31_2.png "Google Streetview Test Data"
-[image7]: ./img/output_8_2.png "Traning Data"
+[image6]: ./img/output_31_2.png "Google Street-view Test Data"
+[image7]: ./img/output_8_2.png "Training Data"
 
 ## Objective
 
@@ -45,7 +45,7 @@ In it, we notice the signs are always orthogonal to the camera and are cropped f
 
 ![Training Data Sampler][image7]
 
-The histogram below, shows the distribution of all the traffic sign according to their labels. Some are much more common than others, which probably reflects their frequency in reallife. This means that somesigns will be easier to train than others.
+The histogram below, shows the distribution of all the traffic sign according to their labels. Some are much more common than others, which probably reflects their frequency in real life. This means that some signs will be easier to train than others.
 
 ![Training Data Class Distribution][image4]
 
@@ -53,7 +53,7 @@ The histogram below, shows the distribution of all the traffic sign according to
 
 ### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc.
 
-As shown in the image below, the signs are not always located in the sameimage region and the contarsts and colours are not constant.
+As shown in the image below, the signs are not always located in the same image region and the contrasts and colours are not constant.
 
 ![Raw Training Data][image1]
 
@@ -62,21 +62,21 @@ Three steps of preprocessing were implemented: masking, grayscale conversion, co
 #### 1 - Masking:
 Since the training data includes coordinates for masking a region of interest, and in the hope to help the learning model, it seems reasonable to implement this effect.
 
-Once this effect was applied however, it became obvious that the provided bounding boxes may do more harm than good, since very often they would mask useful regions of the signs. Thiswould even make it dificult for a human to recognize some signs.
+Once this effect was applied however, it became obvious that the provided bounding boxes may do more harm than good, since very often they would mask useful regions of the signs. This would even make it difficult for a human to recognize some signs.
 
-Although this effect is not used in the final model, it can be enabled by setting ```cropping = True``` in the accompaniying Jupyter notebook.
+Although this effect is not used in the final model, it can be enabled by setting ```cropping = True``` in the accompanying Jupyter notebook.
 
 #### 2 - Grayscale Conversion:
-The low hanging fruit of preprocessing effects, this was quickly implementedin the hope it would remove unnecesary data from the training set.
+The low hanging fruit of preprocessing effects, this was quickly implemented in the hope it would remove unnecessary data from the training set.
 
 It was found out however that the colour data is actually important for identifying the signs (unsurprisingly). 
 
-Although this effect is not used in the final model, it can be enabled by setting ```gray = True``` in the accompaniying Jupyter notebook.
+Although this effect is not used in the final model, it can be enabled by setting ```gray = True``` in the accompanying Jupyter notebook.
 
 #### 3 - Contrast Enhancement:
 In order to make the training set more uniform, contrast enhancement was implemented for both colour images (as a Contrast Limited Adaptive Histogram Equalization or CLAHE), and grayscale (as a simple histogram equalization).
 
-This enhances the features of the training set and makes it mroe uniform. THis effect has a possitive impact in the accuracy of the final model. 
+This enhances the features of the training set and makes it more uniform. THis effect has a positive impact in the accuracy of the final model. 
 
 ### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
@@ -115,17 +115,17 @@ The final model results are:
 * validation set accuracy of 0.944 
 * test set accuracy of 0.918
 
-Inorder to acchieve this results, all combinations of preprocessing were tried as explained previously.
+In order to achieve this results, all combinations of preprocessing were tried as explained previously.
 
 Also, the batch size were changes in the hope of accelerating the training process, however, the accuracy would be reduced by larger batch sizes.
 
-The main problem encountered during the training was a mistake done in the loading of the data. The data was loaded as integers (0 to 255) instead of normalized floats (0 to 1). THis made the training converge withmore dificulty.
+The main problem encountered during the training was a mistake done in the loading of the data. The data was loaded as integers (0 to 255) instead of normalized floats (0 to 1). THis made the training converge with more difficulty.
 
-Finally, the number of epochs was gradually increassed from 10 to 100 in ordert to allow the model to reach a better accuracy.
+Finally, the number of epochs was gradually increased from 10 to 100 in order to allow the model to reach a better accuracy.
 
 Some adjustments to the layer sized was also done, but it did not help with the accuracy so they were reverted.
 
-The robusness of the model to the different inputs (colour, grayscale, masked, equalized) showsthe strenght of the convolution layers that are able to extract features successfully in a wide range of situations.
+The robustness of the model to the different inputs (colour, grayscale, masked, equalized) shows the strength of the convolution layers that are able to extract features successfully in a wide range of situations.
 
 Even with the large number of epochs, the LeTraffic (aka LeNet) model did not overfit and performed well in the test set.
  
@@ -134,13 +134,13 @@ Even with the large number of epochs, the LeTraffic (aka LeNet) model did not ov
 
 ### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 
-13 traffic signs were extracted from browsing trhough the streets of Dusseldorf in Google Streetview.
+13 traffic signs were extracted from browsing through the streets of Dusseldorf in Google Street-view.
 
-The images were rezised and croped using Gimp.
+The images were resized and cropped using Gimp.
 
 ![Traffic Signs from Dusseldorf][image6]
 
-As shown in the visualization above, some of the images were purposefully chosen in a more challenging angle in order to test themodel's robustness.
+As shown in the visualization above, some of the images were purposefully chosen in a more challenging angle in order to test the model's robustness.
 
 The same preprocessing was applied to these images.
 
@@ -169,7 +169,7 @@ Here are the results of the prediction:
 
 10 Correct predictions out of 13
 
-The model was able to correctly guess 10 of the 13 traffic signs, which gives an accuracy of 76.9%. This compares favorably to the accuracy on the test set of 91.8% especially since some signs were specifially chosen to be difficult to identify (and they were indeed missidentified)
+The model was able to correctly guess 10 of the 13 traffic signs, which gives an accuracy of 76.9%. This compares favourably to the accuracy on the test set of 91.8% especially since some signs were specifically chosen to be difficult to identify (and they were indeed misidentified)
 
 ### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
@@ -220,4 +220,4 @@ The code for making predictions on my final model is located in the 64th cell of
 | 35 | Ahead only                                  | 1.666113083226359e-24	|
 | 13 | Yield                                       | 1.0704469747071413e-24	|
 
-The rest of the probabilities for each image can befound in the Jupyter notebook.
+The rest of the probabilities for each image can be found in the Jupyter notebook.
